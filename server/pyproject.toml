@@ -9,3 +9,10 @@ dependencies = [
     "django-cors-headers>=4.7.0",
     "djangorestframework>=3.16.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pylint>=3.3.7",
+    "pylint-django>=2.6.1",
+]
+[tool.pylint]
