@@ -43,6 +43,14 @@ INSTALLED_APPS = [
     'projects',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        # Remove this line to disable browsable API entirely:
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
     'width': '100%',
