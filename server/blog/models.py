@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import forms, Textarea
 from tinymce.models import HTMLField
 
 class Category(models.Model):
