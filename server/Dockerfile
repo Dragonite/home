@@ -21,7 +21,7 @@ RUN uv sync --frozen
 COPY . .
 
 # Create media directory for file uploads
-RUN mkdir -p media/images
+RUN mkdir -p media/images/projects
 
 # Make migrations if needed
 RUN uv run python manage.py makemigrations
