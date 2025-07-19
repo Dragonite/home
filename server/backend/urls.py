@@ -25,7 +25,8 @@ admin.site.index_title = "Portfolio Administration"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('blog.urls')), 
+    path('api/', include('blog.urls')),
+    path('api/', include('projects.urls')),
 ]
 
 if settings.DEBUG:

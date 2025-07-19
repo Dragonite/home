@@ -3,9 +3,7 @@ from rest_framework.response import Response
 from .models import Category, BlogPost
 from .serializers import CategorySerializer, BlogPostSerializer
 from backend.utils import generate_response
-from django.utils import timezone
 from django.shortcuts import get_object_or_404
-import uuid
 
 class CategoryListView(APIView):
     def get(self, request):
