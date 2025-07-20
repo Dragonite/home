@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink } from "lucide-react"
 import Link from "next/link"
@@ -6,60 +5,51 @@ import type { Project } from "@/lib/schemas"
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card className="h-full hover:shadow-md transition-shadow duration-200">
-      <CardContent className="flex flex-col justify-between h-full p-6">
-        <div className="space-y-3">
-          {/* Header */}
-          <div className="flex items-start justify-between">
+    <div className="group relative h-80 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+        style={{ backgroundImage: `url(http://127.0.0.1:8000${project.image})` }}
+      />
+      
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/30" />
+      
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col justify-end">
+        <div className="p-6 text-white">
+          <div className="flex items-start justify-between mb-3">
             <div>
-              <h3 className="text-xl font-semibold">{project.name}</h3>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-sm text-muted-foreground">{project.year}</span>
-                {project.featured && (
-                  <Badge variant="default" className="text-xs">
-                    Featured
-                  </Badge>
-                )}
-              </div>
+              <h3 className="text-xl font-bold">{project.name}</h3>
+              <span className="text-sm text-gray-300">{project.year}</span>
             </div>
-            
-            {project.link && (
-              <Link 
-                href={project.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ExternalLink size={18} />
-              </Link>
-            )}
           </div>
           
           {/* Description */}
-          <p className="text-muted-foreground text-sm leading-relaxed">
+          <p className="text-gray-200 text-sm mb-4 leading-relaxed">
             {project.short_description}
           </p>
+          
+          {/* Skills */}
+          <div className="flex flex-wrap gap-2">
+            {project.skills.slice(0, 3).map((skill) => (
+              <Badge 
+                key={skill.id} 
+                variant="default"
+                className="text-xs"
+              >
+                {skill.name}
+              </Badge>
+            ))}
+            {project.skills.length > 3 && (
+              <Badge variant="outline" className="text-xs">
+                +{project.skills.length - 3} more
+              </Badge>
+            )}
+          </div>
         </div>
-        
-        {/* Skills */}
-        <div className="flex flex-wrap gap-2 mt-4">
-          {project.skills.slice(0, 3).map((skill) => (
-            <Badge 
-              key={skill.id} 
-              variant="secondary"
-              className="text-xs"
-            >
-              {skill.name}
-            </Badge>
-          ))}
-          {project.skills.length > 3 && (
-            <Badge variant="outline" className="text-xs">
-              +{project.skills.length - 3} more
-            </Badge>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
 

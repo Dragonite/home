@@ -73,7 +73,7 @@ export function FeaturedProjectCarouselClient() {
     >
       <CarouselContent>
         {projects?.data.projects.map((project: Project) => 
-            <CarouselItem key={`${project.id}__carousel`} className="md:basis-1/2 lg:basis-1/3">
+            <CarouselItem key={`${project.id}__carousel`} className="md:basis-1/2 lg:basis-1/3 pt-2">
                 <ProjectCard key={project.id} project={project}/>
             </CarouselItem>
         )}
