@@ -8,6 +8,12 @@
 npm i
 npm run dev
 ```
+#### Core Packages
+- Next
+- Tanstack React Query
+- shadcn/ui
+- zod
+- lucide
 
 ### Backend
 
@@ -19,3 +25,8 @@ uv sync
 uv run python manage.py migrate
 uv run python manage.py runserver
 ```
+
+#### Core Packages
+- Django REST Framework
+- django-otp
+- django-tinymce
