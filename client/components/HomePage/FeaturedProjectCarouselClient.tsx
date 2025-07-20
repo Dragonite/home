@@ -14,55 +14,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProjectCardSkeleton from "./ProjectCardSkeleton"
-import { Button } from "../ui/button"
 import ApiError from "../api-error"
+import { fetchFeaturedProjects } from "@/lib/api/projects"
+import { Project } from "@/lib/schemas"
+import ProjectCard from "./ProjectCard"
 
-// Types
-interface Project {
-  id: string
-  title: string
-  description: string
-  image?: string
-  technologies: string[]
-}
-
-// API Function
-async function fetchFeaturedProjects(): Promise<Project[]> {
-  const response = await fetch('/api/projects?featured=true')
-  if (!response.ok) {
-    throw new Error('Failed to fetch featured projects')
-  }
-  return response.json()
-}
-
-// Project Card Component
-function ProjectCard({ project }: { project: Project }) {
-  return (
-    <Card className="h-full">
-      <CardContent className="flex flex-col justify-between h-full p-6">
-        <div>
-          <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-          <p className="text-gray-600 text-sm mb-4">{project.description}</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.slice(0, 3).map((tech) => (
-            <span 
-              key={tech}
-              className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
 
 // Client Component with TanStack Query
 export function FeaturedProjectCarouselClient() {
   const plugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
+    Autoplay({ delay: 5000, stopOnInteraction: true })
   )
 
   const { data: projects, isLoading, error } = useQuery({
@@ -111,13 +72,11 @@ export function FeaturedProjectCarouselClient() {
       className="w-full max-w-6xl mt-24 mx-auto"
     >
       <CarouselContent>
-        {projects?.map((project) => (
-          <CarouselItem key={project.id} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
-              <ProjectCard project={project} />
-            </div>
-          </CarouselItem>
-        ))}
+        {projects?.data.projects.map((project: Project) => 
+            <CarouselItem key={`${project.id}__carousel`} className="md:basis-1/2 lg:basis-1/3">
+                <ProjectCard key={project.id} project={project}/>
+            </CarouselItem>
+        )}
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
