@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { Menu, X } from "lucide-react"
+import { Menu, X, Mail } from "lucide-react"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 const navigationItems = [{ name: "Projects" }, { name: "Achievements" }, { name: "Blog" }, { name: "About" }]
 
@@ -23,6 +31,25 @@ const NavigationBar = () => {
               {item.name}
             </Button>
           ))}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                key="Contact"
+                variant="secondary"
+                className="hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
+              >
+                <Mail size={20} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Contact me</SheetTitle>
+                <SheetDescription>
+                  Feel free to reach out to me through this form, or via email.
+                </SheetDescription>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
         </div>
       </nav>
 

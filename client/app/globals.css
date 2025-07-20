@@ -87,13 +87,36 @@
   }
 }
 
-.fade-bottom {
-    -webkit-mask-image: linear-gradient(#000 65%, #0000);
-    mask-image: linear-gradient(#000 65%, #0000);
-}
-
 @layer base {
   button, [role="button"] {
     cursor: pointer;
   }
+}
+
+.animate-typewriter {
+    animation: typing 2s steps(30)
+}
+
+.animate-blink {
+    animation: blink-caret .75s steps(17) infinite
+}
+
+@keyframes typing {
+    0% {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+    0% {
+        color: #000
+    }
+
+    to {
+        color: #fff
+    }
 }
