@@ -13,7 +13,13 @@ class SkillListView(APIView):
 
 class ProjectListView(APIView):
     def get(self, request):
-        projects = Project.objects.all()
+        featured = request.GET.get('featured')
+        if featured == 'true':
+            projects = Project.objects.filter(featured=True)
+        elif featured == 'false':
+            projects = Project.objects.filter(featured=False)
+        else:
+            projects = Project.objects.all()
         serializer = ProjectSerializer(projects, many=True)
         return generate_response(serializer.data, "projects")
 
