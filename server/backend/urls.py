@@ -18,25 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django_otp.admin import OTPAdminSite
-from django.apps import apps
-
-admin.site.site_header = "Haolin's Portfolio"
-admin.site.site_title = "Haolin's Portfolio"
-admin.site.index_title = "Portfolio Administration"
-
-# Override django-otp app names for cleaner look
-apps.get_app_config('otp_static').verbose_name = 'Backup Codes'
-apps.get_app_config('otp_totp').verbose_name = 'Authenticator Tokens'
-
-# Manage OTP 
-if settings.DEBUG == False:
-    admin.site.__class__ = OTPAdminSite
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('blog.urls')),
     path('api/', include('projects.urls')),
+    path('core/', include('core.urls')),
 ]
 
 if settings.DEBUG:

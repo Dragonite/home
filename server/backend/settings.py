@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'tinymce',
     'blog',
     'projects',
+    'core',
 ]
 
 # CORS settings
