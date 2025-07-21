@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import ContactContent from "@/components/contact/content";
 
 const navigationItems = [{ name: "Projects" }, { name: "Achievements" }, { name: "Blog" }]
 
@@ -105,20 +106,7 @@ const NavigationBar = () => {
         <SheetHeader className="h-full">
           <SheetTitle>Contact me</SheetTitle>
           <SheetDescription asChild>
-            <div className="flex flex-col space-between h-full">
-              <div>Feel free to reach out to me through this form, or via email.</div>
-              <div className="text-sm text-muted-foreground mt-auto">
-                <span>Website designed and built by Haolin Wu. For the source code visit the</span>
-                <Button 
-                  asChild
-                  className="py-0 pl-1 pr-0"
-                  variant="link"
-                >
-                  <Link href="https://www.github.com">GitHub</Link>
-                </Button>
-                <span>.</span>
-              </div>
-            </div>
+            <ContactContent />
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
