@@ -1,6 +1,4 @@
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink } from "lucide-react"
-import Link from "next/link"
 import type { Project } from "@/lib/schemas"
 
 function ProjectCard({ project }: { project: Project }) {
