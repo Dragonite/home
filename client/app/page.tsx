@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ChevronRightIcon from "@/components/HomePage/ChevronRight";
-import { FeaturedProjectCarousel } from "@/components/HomePage/FeaturedProjects";
+import { FeaturedProjects } from "@/components/FeaturedProjects/FeaturedProjects";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
@@ -43,7 +43,7 @@ export default function Home() {
         />
       </div>
       <div className="px-16 sm:px-24 lg:px-32 w-full transition-all duration-200 ease-out">
-        <FeaturedProjectCarousel />
+        <FeaturedProjects />
       </div>
     </div>
   );

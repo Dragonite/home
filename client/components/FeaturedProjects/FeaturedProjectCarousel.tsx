@@ -5,7 +5,6 @@ import { useRef } from "react"
 import { useQuery } from "@tanstack/react-query"
 import Autoplay from "embla-carousel-autoplay"
 
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -21,7 +20,7 @@ import ProjectCard from "./ProjectCard"
 
 
 // Client Component with TanStack Query
-export function FeaturedProjectCarouselClient() {
+export function FeaturedProjectCarousel() {
   const plugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true })
   )

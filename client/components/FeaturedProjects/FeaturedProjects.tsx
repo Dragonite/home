@@ -1,5 +1,4 @@
 import { Suspense } from "react"
-import { Card, CardContent } from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -7,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { FeaturedProjectCarouselClient } from "./FeaturedProjectCarouselClient"
+import { FeaturedProjectCarousel } from "./FeaturedProjectCarousel"
 import ProjectCardSkeleton from "./ProjectCardSkeleton"
 
 // Server-side Skeleton Carousel
@@ -33,10 +32,10 @@ function SkeletonCarousel() {
 }
 
 // Main Server Component
-export function FeaturedProjectCarousel() {
+export function FeaturedProjects() {
   return (
     <Suspense fallback={<SkeletonCarousel />}>
-      <FeaturedProjectCarouselClient />
+      <FeaturedProjectCarousel />
     </Suspense>
   )
 }
