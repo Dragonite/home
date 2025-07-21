@@ -37,7 +37,7 @@ export function FeaturedProjectCarousel() {
     return (
       <Carousel
         opts={{ align: "start" }}
-        className="w-full max-w-6xl mt-24 mx-auto"
+        className="w-full max-w-6xl mx-auto"
       >
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -57,7 +57,7 @@ export function FeaturedProjectCarousel() {
   // Handle error state
   if (error) {
     return (
-        <div className="w-full max-w-6xl mt-24 mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
             <ApiError message="Failed to load featured projects." />
         </div>
     )
@@ -68,7 +68,7 @@ export function FeaturedProjectCarousel() {
     <Carousel
       plugins={[plugin.current]}
       opts={{ align: "start" }}
-      className="w-full max-w-6xl mt-24 mx-auto"
+      className="w-full max-w-6xl mx-auto"
     >
       <CarouselContent>
         {projects?.data.projects.map((project: Project) => 

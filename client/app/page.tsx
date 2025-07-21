@@ -23,7 +23,7 @@ export default async function Home() {
         </div>
       </div>
       <CTAActionList />
-      <div className="px-16 sm:px-24 lg:px-32 w-full transition-all duration-200 ease-out">
+      <div className="px-16 sm:px-24 lg:px-32 mt-24 w-full transition-all duration-200 ease-out">
         <FeaturedProjects />
       </div>
     </div>

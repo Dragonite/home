@@ -14,7 +14,11 @@ import {
 } from "@/components/ui/sheet"
 import ContactContent from "@/components/contact/content";
 
-const navigationItems = [{ name: "Projects" }, { name: "Achievements" }, { name: "Blog" }]
+const navigationItems = [
+  { name: "Projects", link: "/projects" },
+  { name: "Achievements", link: "/achievements" },
+  { name: "Blog", link: "/blog" },
+]
 
 const NavigationBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -36,11 +40,14 @@ const NavigationBar = () => {
           </Button>
           {navigationItems.map((item) => (
             <Button
+              asChild
               key={item.name}
               variant="ghost"
               className="text-white/90 hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
             >
-              {item.name}
+              <Link href={item.link}>
+                {item.name}
+              </Link>
             </Button>
           ))}
           <SheetTrigger asChild>
@@ -73,6 +80,7 @@ const NavigationBar = () => {
                 asChild
                 key="Home"
                 variant="ghost"
+                onClick={() => setIsMobileMenuOpen(false)}
                 className="hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
               >
                 <Link href="/" className="flex items-center">
@@ -81,17 +89,21 @@ const NavigationBar = () => {
               </Button>
               {navigationItems.map((item) => (
                 <Button
+                  asChild
                   key={item.name}
                   variant="ghost"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-white/90 hover:text-white hover:bg-white/10 rounded-xl px-4 py-3 transition-all duration-200 border-0 text-center"
                 >
-                  {item.name}
+                  <Link href={item.link}>
+                    {item.name}
+                  </Link>
                 </Button>
               ))}
               <SheetTrigger asChild>
                 <Button
                   key="Contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
                   variant="secondary"
                   className="hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
                 >
