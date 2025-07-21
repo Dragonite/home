@@ -1,11 +1,7 @@
 import { Metadata } from "next";
-import ChevronRightIcon from "@/components/HomePage/ChevronRight";
-import { FeaturedProjects } from "@/components/FeaturedProjects/FeaturedProjects";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import HomePageIconButton from "@/components/HomePage/IconButton";
-import { getGlobalConfig } from "@/lib/api/config";
+import ChevronRightIcon from "@/components/home-page/chevron-right";
+import { FeaturedProjects } from "@/components/featured-projects/featured-projects";
+import CTAActionList from "@/components/home-page/cta-action-list";
 
 export const metadata: Metadata = {
   title: 'Haolin Wu - Software & Data Engineer',
@@ -13,12 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const globalConfig = await getGlobalConfig();
-  const { 
-    resume_file: resume,
-    github_url: githubURL,
-    linkedin_url: linkedinURL,
-  } = globalConfig;
   return (
     <div className="w-full flex items-center justify-center flex-col">
       <div className="text-center w-full text-primary leading-tighter max-w-2xl text-6xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter">
@@ -32,23 +22,7 @@ export default async function Home() {
           <div className="ml-2 animate-blink">_</div>
         </div>
       </div>
-      <div className="mt-4 sm:mt-6 flex items-center justify-center gap-4">
-        <Button asChild variant="secondary">
-          <Link href={`${process.env.MEDIA_ROOT}${resume}`} className="flex items-center">
-            Resume
-          </Link>
-        </Button>
-        <HomePageIconButton
-          href={githubURL}
-          icon={<GitHubLogoIcon className="w-6 h-6 hover:opacity-70 transition-opacity duration-200" />}
-          className="flex items-center"
-        />
-        <HomePageIconButton
-          href={linkedinURL}
-          icon={<LinkedInLogoIcon className="w-6 h-6 hover:opacity-70 transition-opacity duration-200" />}
-          className="flex items-center"
-        />
-      </div>
+      <CTAActionList />
       <div className="px-16 sm:px-24 lg:px-32 w-full transition-all duration-200 ease-out">
         <FeaturedProjects />
       </div>

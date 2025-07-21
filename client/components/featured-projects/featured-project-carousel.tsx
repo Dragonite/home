@@ -12,11 +12,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import ProjectCardSkeleton from "./ProjectCardSkeleton"
+import ProjectCardSkeleton from "./project-card-skeleton"
 import ApiError from "../api-error"
 import { fetchFeaturedProjects } from "@/lib/api/projects"
 import { Project } from "@/lib/schemas"
-import ProjectCard from "./ProjectCard"
+import ProjectCard from "./project-card"
 
 
 // Client Component with TanStack Query

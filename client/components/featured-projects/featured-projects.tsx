@@ -6,8 +6,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { FeaturedProjectCarousel } from "./FeaturedProjectCarousel"
-import ProjectCardSkeleton from "./ProjectCardSkeleton"
+import { FeaturedProjectCarousel } from "./featured-project-carousel"
+import ProjectCardSkeleton from "./project-card-skeleton"
 
 // Server-side Skeleton Carousel
 function SkeletonCarousel() {
