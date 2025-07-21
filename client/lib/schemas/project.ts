@@ -16,8 +16,8 @@ export const ProjectSchema = z.object({
   priority: z.number(),
   featured: z.boolean(),
   year: z.number(),
-  link: z.string(),
-  image: z.string(),
+  link: z.string().nullable(),
+  image: z.string().optional(),
   skills: z.array(SkillSchema),
 })
 

@@ -5,13 +5,20 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import HomePageIconButton from "@/components/HomePage/IconButton";
+import { getGlobalConfig } from "@/lib/api/config";
 
 export const metadata: Metadata = {
   title: 'Haolin Wu - Software & Data Engineer',
   description: 'Portfolio of Haolin Wu, Software & Data Engineer specializing in full-stack development and data solutions.',
 };
 
-export default function Home() {
+export default async function Home() {
+  const globalConfig = await getGlobalConfig();
+  const { 
+    resume_file: resume,
+    github_url: githubURL,
+    linkedin_url: linkedinURL,
+  } = globalConfig;
   return (
     <div className="w-full flex items-center justify-center flex-col">
       <div className="text-center w-full text-primary leading-tighter max-w-2xl text-6xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter">
@@ -27,17 +34,17 @@ export default function Home() {
       </div>
       <div className="mt-4 sm:mt-6 flex items-center justify-center gap-4">
         <Button asChild variant="secondary">
-          <Link href="/projects" className="flex items-center">
+          <Link href={`${process.env.MEDIA_ROOT}${resume}`} className="flex items-center">
             Resume
           </Link>
         </Button>
         <HomePageIconButton
-          href="/projects"
+          href={githubURL}
           icon={<GitHubLogoIcon className="w-6 h-6 hover:opacity-70 transition-opacity duration-200" />}
           className="flex items-center"
         />
         <HomePageIconButton
-          href="/projects"
+          href={linkedinURL}
           icon={<LinkedInLogoIcon className="w-6 h-6 hover:opacity-70 transition-opacity duration-200" />}
           className="flex items-center"
         />

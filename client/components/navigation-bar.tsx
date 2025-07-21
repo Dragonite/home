@@ -104,8 +104,8 @@ const NavigationBar = () => {
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Contact me</SheetTitle>
-          <SheetDescription>
-            Feel free to reach out to me through this form, or via email.
+          <SheetDescription asChild>
+            <div>Feel free to reach out to me through this form, or via email.</div>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
