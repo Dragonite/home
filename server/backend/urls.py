@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/', include('blog.urls')),
     path('api/', include('projects.urls')),
     path('api/', include('core.urls')),
+    path('api/', include('achievements.urls')),
 ]
 
 if settings.DEBUG:
