@@ -14,7 +14,6 @@ const ProjectAccordion = async () => {
   const projects = await fetchProjects('all');
   if (!projects || !projects.data || !projects.data.projects || !projects.data.projects.length) return <></>;
   const projectList = projects.data.projects;
-  console.log(projectList);
   return (
     <div className="px-8 sm:px-16 lg:px-24 w-full mt-12 mb-8 max-w-6xl">
       <Accordion
@@ -39,7 +38,7 @@ const ProjectAccordion = async () => {
                 </div>
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-4 text-balance">
-                <div className="bg-cover bg-center bg-no-repeat w-full h-36 rounded-lg shadow-md brightness-80" style={{ backgroundImage: `url('${process.env.MEDIA_ROOT}${image}')` }} />
+                <div className="bg-cover bg-center bg-no-repeat w-full h-36 rounded-lg shadow-md brightness-80" style={{ backgroundImage: `url('${image}')` }} />
                 <p>
                   {description}
                 </p>

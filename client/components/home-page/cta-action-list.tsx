@@ -7,14 +7,14 @@ import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import HomePageIconButton from "@/components/home-page/icon-button";
 
 const CTAActionList = () => {
-  const { config, mediaRoot } = useConfig();
+  const { config } = useConfig();
   if (!config) return <></>;
 
   const { resume_file, github_url, linkedin_url } = config;
   return (
     <div className="mt-4 sm:mt-6 flex items-center justify-center gap-4">
       <Button asChild variant="secondary">
-        <Link href={`${mediaRoot}${resume_file}`} className="flex items-center">
+        <Link href={resume_file} className="flex items-center">
           Resume
         </Link>
       </Button>

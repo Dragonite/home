@@ -5,24 +5,21 @@ import type { GlobalConfig } from '@/lib/schemas'
 
 interface ConfigContextType {
   config: GlobalConfig | null;
-  mediaRoot: string;
 }
 
 interface ConfigProviderProps {
   children: ReactNode;
   config: GlobalConfig | null;
-  mediaRoot: string;
 }
 
-const ConfigContext = createContext<ConfigContextType>({ config: null, mediaRoot: 'http://127.0.0.1:8080' })
+const ConfigContext = createContext<ConfigContextType>({ config: null})
 
 export function ConfigProvider({ 
   children, 
   config,
-  mediaRoot,
 }: ConfigProviderProps) {
   return (
-    <ConfigContext.Provider value={{ config, mediaRoot }}>
+    <ConfigContext.Provider value={{ config }}>
       {children}
     </ConfigContext.Provider>
   )

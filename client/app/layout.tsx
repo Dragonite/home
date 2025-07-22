@@ -33,7 +33,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         <Providers>
-          <ConfigProvider config={globalConfig} mediaRoot={process.env.MEDIA_ROOT || 'http://127.0.0.1:8000'}>
+          <ConfigProvider config={globalConfig}>
             <NavigationBar />
             <main className="pt-32">
               {children}

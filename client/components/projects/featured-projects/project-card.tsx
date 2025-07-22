@@ -7,7 +7,7 @@ function ProjectCard({ project }: { project: Project }) {
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-        style={{ backgroundImage: `url(http://127.0.0.1:8000${project.image})` }}
+        style={{ backgroundImage: `url(${project.image})` }}
       />
       
       {/* Gradient Overlay */}
