@@ -13,8 +13,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import ProjectCardSkeleton from "./project-card-skeleton"
-import ApiError from "../api-error"
-import { fetchFeaturedProjects } from "@/lib/api/projects"
+import ApiError from "../../api-error"
+import { fetchProjects } from "@/lib/api/projects"
 import { Project } from "@/lib/schemas"
 import ProjectCard from "./project-card"
 
@@ -27,7 +27,7 @@ export function FeaturedProjectCarousel() {
 
   const { data: projects, isLoading, error } = useQuery({
     queryKey: ['featured-projects'],
-    queryFn: fetchFeaturedProjects,
+    queryFn: () => fetchProjects(true),
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000,   // 10 minutes (formerly cacheTime)
   })

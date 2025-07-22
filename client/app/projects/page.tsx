@@ -1,4 +1,5 @@
-import { FeaturedProjects } from "@/components/featured-projects/featured-projects";
+import { FeaturedProjects } from "@/components/projects/featured-projects/featured-projects";
+import ProjectAccordion from "@/components/projects/project-accordion";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export default async function Page() {
   return (
     <div className="w-full flex items-center justify-center flex-col">
       <div className="px-8 sm:px-16 lg:px-24 w-full flex flex-col items-center">
-        <div className="text-center w-full text-primary leading-tighter max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-xl xl:tracking-tighter">
+        <div className="text-center w-full text-primary leading-tighter max-w-2xl text-4xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:tracking-tighter">
           Projects
         </div>
         <div className="text-center text-muted-foreground mt-4">
@@ -22,6 +23,7 @@ export default async function Page() {
           <FeaturedProjects />
         </div>
       </div>
+      <ProjectAccordion />
     </div>
   );
 }

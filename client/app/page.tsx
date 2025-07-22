@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ChevronRightIcon from "@/components/home-page/chevron-right";
-import { FeaturedProjects } from "@/components/featured-projects/featured-projects";
+import { FeaturedProjects } from "@/components/projects/featured-projects/featured-projects";
 import CTAActionList from "@/components/home-page/cta-action-list";
 
 export const metadata: Metadata = {
