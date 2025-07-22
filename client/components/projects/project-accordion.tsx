@@ -4,59 +4,56 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { fetchProjects } from "@/lib/api/projects";
+import { Badge } from "../ui/badge";
 
-const ProjectAccordion = () => {
+const ProjectAccordion = async () => {
+  const projects = await fetchProjects('all');
+  if (!projects || !projects.data || !projects.data.projects || !projects.data.projects.length) return <></>;
+  const projectList = projects.data.projects;
+  console.log(projectList);
   return (
     <div className="px-8 sm:px-16 lg:px-24 w-full mt-12 mb-8">
       <Accordion
         type="single"
         collapsible
         className="w-full"
-        defaultValue="item-1"
+        defaultValue={`${projectList[0].id}`}
       >
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Product Information</AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-4 text-balance">
-            <p>
-              Our flagship product combines cutting-edge technology with sleek
-              design. Built with premium materials, it offers unparalleled
-              performance and reliability.
-            </p>
-            <p>
-              Key features include advanced processing capabilities, and an
-              intuitive user interface designed for both beginners and experts.
-            </p>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Shipping Details</AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-4 text-balance">
-            <p>
-              We offer worldwide shipping through trusted courier partners.
-              Standard delivery takes 3-5 business days, while express shipping
-              ensures delivery within 1-2 business days.
-            </p>
-            <p>
-              All orders are carefully packaged and fully insured. Track your
-              shipment in real-time through our dedicated tracking portal.
-            </p>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Return Policy</AccordionTrigger>
-          <AccordionContent className="flex flex-col gap-4 text-balance">
-            <p>
-              We stand behind our products with a comprehensive 30-day return
-              policy. If you&apos;re not completely satisfied, simply return the
-              item in its original condition.
-            </p>
-            <p>
-              Our hassle-free return process includes free return shipping and
-              full refunds processed within 48 hours of receiving the returned
-              item.
-            </p>
-          </AccordionContent>
-        </AccordionItem>
+        {projectList.map(project => {
+          const { id, name, description, year, skills } = project;
+          return (
+            <AccordionItem
+              key={`project-accordion-${id}`}
+              value={id.toString()}
+            >
+              <AccordionTrigger className="hover:no-underline hover:[&_[data-project-name]]:underline">
+                <div className="flex items-center justify-between w-full">
+                  <span data-project-name >{name}</span>
+                  <Badge variant="secondary" className="text-xs ml-2">
+                    {year}
+                  </Badge>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="flex flex-col gap-4 text-balance">
+                <p>
+                  {description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {skills.map(skill => (
+                    <Badge 
+                      key={`project-accordion-${id}-${skill.name}`} 
+                      variant="default"
+                      className="text-xs"
+                    >
+                      {skill.name}
+                    </Badge>
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          )
+        })}
       </Accordion>
     </div>
   )
