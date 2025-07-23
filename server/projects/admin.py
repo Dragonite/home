@@ -5,7 +5,7 @@ from .models import Skill, Project
 admin.site.register(Skill)
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ['name', 'short_description', 'priority', 'featured', 'year', 'link', 'image', 'get_skills']
+    list_display = ['name', 'is_active', 'short_description', 'priority', 'featured', 'year', 'link', 'image', 'get_skills']
     filter_horizontal = ['skills']
     
     def get_skills(self, obj):

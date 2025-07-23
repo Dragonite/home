@@ -9,6 +9,7 @@ class Achievement(models.Model):
     link = models.URLField(blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
     image = models.ImageField(upload_to='images/projects/', blank=True, null=True)
+    is_active = models.BooleanField(default=True, help_text="Show this achievement on the portfolio")
 
     def __str__(self):
         return self.name
@@ -23,6 +24,7 @@ class Certification(models.Model):
     link = models.URLField(blank=True, null=True)
     certification_file = models.FileField(upload_to='files/certifications/', blank=True, null=True)
     image = models.FileField(upload_to='images/certifications/', blank=True, null=True)
+    is_active = models.BooleanField(default=True, help_text="Show this certification on the portfolio")
 
     def __str__(self):
         return self.name

@@ -6,13 +6,13 @@ from backend.utils import generate_response
 
 class AchievementView(APIView):
     def get(self, request):
-        achievements = Achievement.objects.all()
+        achievements = Achievement.objects.filter(is_active=True).order_by('priority')
         serialized = AchievementSerializer(achievements, many=True)
         return generate_response(serialized.data, "achievements")
 
 class CertificationView(APIView):
     def get(self, request):
-        certifications = Certification.objects.all().order_by('issued_by', '-issued_date')
+        certifications = Certification.objects.filter(is_active=True).order_by('issued_by', '-issued_date')
         grouped = defaultdict(list)
         for cert in certifications:
             serialized_cert = CertificationSerializer(cert).data

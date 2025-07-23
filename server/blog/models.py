@@ -15,6 +15,7 @@ class BlogPost(models.Model):
     content = HTMLField()
     categories = models.ManyToManyField(Category, related_name='posts', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True, help_text="Show this post on the blog")
 
     def __str__(self):
         return self.title

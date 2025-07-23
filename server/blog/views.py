@@ -13,12 +13,12 @@ class CategoryListView(APIView):
 
 class BlogPostListView(APIView):
     def get(self, request):
-        posts = BlogPost.objects.all()
+        posts = BlogPost.objects.filter(is_active=True).order_by('-created_at')
         serializer = BlogPostSerializer(posts, many=True)
         return generate_response(serializer.data, "posts")
 
 class BlogPostDetailView(APIView):
     def get(self, request, pk):
-        post = get_object_or_404(BlogPost, pk=pk)
+        post = get_object_or_404(BlogPost, pk=pk, is_active=True)
         serializer = BlogPostSerializer(post)
         return generate_response(serializer.data, "post")

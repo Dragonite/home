@@ -15,16 +15,16 @@ class ProjectListView(APIView):
     def get(self, request):
         featured = request.GET.get('featured')
         if featured == 'true':
-            projects = Project.objects.filter(featured=True)
+            projects = Project.objects.filter(featured=True, is_active=True)
         elif featured == 'false':
-            projects = Project.objects.filter(featured=False)
+            projects = Project.objects.filter(featured=False, is_active=True)
         else:
-            projects = Project.objects.all()
+            projects = Project.objects.filter(is_active=True)
         serializer = ProjectSerializer(projects, many=True)
         return generate_response(serializer.data, "projects")
 
 class ProjectDetailView(APIView):
     def get(self, request, pk):
-        project = get_object_or_404(Project, pk=pk)
+        project = get_object_or_404(Project, pk=pk, is_active=True)
         serializer = ProjectSerializer(project)
         return generate_response(serializer.data, "project")

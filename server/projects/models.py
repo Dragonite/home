@@ -18,6 +18,7 @@ class Project(models.Model):
     year = models.IntegerField(blank=True, null=True)
     link = models.URLField(blank=True, null=True)
     skills = models.ManyToManyField(Skill, related_name='projects', blank=True)
+    is_active = models.BooleanField(default=True, help_text="Show this project on the portfolio")
 
     def __str__(self):
         return self.name
