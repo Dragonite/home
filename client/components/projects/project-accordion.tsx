@@ -8,7 +8,7 @@ import { fetchProjects } from "@/lib/api/projects";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
 import { Button } from "../ui/button";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const ProjectAccordion = async () => {
   const projects = await fetchProjects('all');
@@ -58,7 +58,7 @@ const ProjectAccordion = async () => {
                     <Button asChild variant="link" className="text-xs text-muted-foreground h-max p-0 ml-2 flex gap-1">
                       <Link href={link}>
                         <span>Check out here</span>
-                        <ExternalLink />
+                        <ArrowUpRight />
                       </Link>
                     </Button>
                   )}
