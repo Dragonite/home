@@ -1,6 +1,17 @@
 from django.db import models
 
-# Create your models here.
+class AdminExternalService(models.Model):
+    name = models.CharField(max_length=100)
+    url = models.URLField()
+    description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0, help_text="Display order")
+
+    class Meta:
+        ordering = ['order', 'name']
+    
+    def __str__(self):
+        return self.name
 
 class GlobalConfiguration(models.Model):
     resume_file = models.FileField(
