@@ -21,6 +21,7 @@ class Certification(models.Model):
     issued_by = models.CharField(max_length=255)
     issued_date = models.DateField()
     link = models.URLField(blank=True, null=True)
+    certification_file = models.FileField(upload_to='files/certifications/', blank=True, null=True)
     image = models.ImageField(upload_to='images/certifications/', blank=True, null=True)
 
     def __str__(self):
