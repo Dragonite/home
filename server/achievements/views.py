@@ -12,7 +12,7 @@ class AchievementView(APIView):
 
 class CertificationView(APIView):
     def get(self, request):
-        certifications = Certification.objects.all()
+        certifications = Certification.objects.all().order_by('issued_by', '-issued_date')
         grouped = defaultdict(list)
         for cert in certifications:
             serialized_cert = CertificationSerializer(cert).data
