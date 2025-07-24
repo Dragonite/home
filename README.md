@@ -36,16 +36,16 @@ The frontend is written in **TypeScript** and uses **Next.js** as the framework.
 
 It's hosted on **Vercel** simply as a Next.js application, alongside a cron job that runs daily to verify the database is healthy, more about this later.
 
-## Server (Backend)
+### Server (Backend)
 
 The backend is written in **Python** using **Django REST Framework**, to serve REST API endpoints. Furthermore, **Django Admin** is enabled essentially allowing the backend to act as a content management system (CMS) for the portfolio.
 
 With some tweaks, this is hosted on **Vercel**.
 
-## Object/Media store
+### Object/Media store
 
 Files and images are hosted on the S3 compatible **Cloudflare R2**. This service has a very generous free tier, and can be swapped out for another S3 compatible service at any point.
 
-## Database
+### Database
 
 A **Postgres** database is hosted using the free tier of **Supabase**. The database goes into hibernation if there's been no connections within a week, so a `/health` endpoint is added that is queried by the `client` daily to ensure healthiness of the instance.
