@@ -12,22 +12,22 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import ProjectCardSkeleton from "../../ui/card-skeleton"
+import CardSkeleton from "@/components/ui/card-skeleton"
 import ApiError from "../../api-error"
-import { fetchProjects } from "@/lib/api/projects"
-import { Project } from "@/lib/schemas"
-import ProjectCard from "./project-card"
-
+import { fetchAchievements } from "@/lib/api/achievements"
+import { Achievement } from "@/lib/schemas/achievements"
+import AchievementCard from "./achievement-card"
+import Link from "next/link"
 
 // Client Component with TanStack Query
-export function FeaturedProjectCarousel() {
+export function AchievementCarousel() {
   const plugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true })
   )
 
-  const { data: projects, isLoading, error } = useQuery({
-    queryKey: ['featured-projects'],
-    queryFn: () => fetchProjects(true),
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['featured-achievements'],
+    queryFn: fetchAchievements,
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000,   // 10 minutes (formerly cacheTime)
   })
@@ -43,7 +43,7 @@ export function FeaturedProjectCarousel() {
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
-                <ProjectCardSkeleton />
+                <CardSkeleton />
               </div>
             </CarouselItem>
           ))}
@@ -57,9 +57,9 @@ export function FeaturedProjectCarousel() {
   // Handle error state
   if (error) {
     return (
-        <div className="w-full max-w-6xl mx-auto">
-            <ApiError message="Failed to load featured projects." />
-        </div>
+      <div className="w-full max-w-6xl mx-auto">
+          <ApiError message="Failed to load featured achievements." />
+      </div>
     )
   }
 
@@ -71,10 +71,16 @@ export function FeaturedProjectCarousel() {
       className="w-full max-w-6xl mx-auto"
     >
       <CarouselContent>
-        {projects?.data.projects.map((project: Project) => 
-            <CarouselItem key={`${project.id}__carousel`} className="md:basis-1/2 lg:basis-1/3 pt-2">
-                <ProjectCard key={project.id} project={project}/>
-            </CarouselItem>
+        {data?.data.achievements.map((achievement: Achievement) => 
+          <CarouselItem key={`${achievement.id}__carousel`} className="md:basis-1/2 lg:basis-1/3 pt-2">
+            {achievement.link ? (
+              <Link href={achievement.link}>
+                <AchievementCard key={achievement.id} achievement={achievement}/>
+              </Link>
+            ) : (
+              <AchievementCard key={achievement.id} achievement={achievement}/>
+            )}
+          </CarouselItem>
         )}
       </CarouselContent>
       <CarouselPrevious />

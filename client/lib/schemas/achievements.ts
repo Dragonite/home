@@ -12,7 +12,7 @@ export const AchievementSchema = z.object({
 });
 
 export const AchievementDataSchema = z.object({
-  achievements: z.record(z.string(), z.array(AchievementSchema)),
+  achievements: z.array(AchievementSchema),
 });
 
 export const AchievementApiResponseSchema = ApiResponseSchema(AchievementDataSchema)

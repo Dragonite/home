@@ -1,3 +1,5 @@
 export * from './api'
 export * from './project'
 export * from './config'
+export * from './achievements'
+export * from './certifications'

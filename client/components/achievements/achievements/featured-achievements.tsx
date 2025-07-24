@@ -6,8 +6,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { FeaturedProjectCarousel } from "./featured-project-carousel"
-import ProjectCardSkeleton from "../../ui/card-skeleton"
+import { AchievementCarousel } from "./achievement-carousel"
+import CardSkeleton from "@/components/ui/card-skeleton"
 
 // Server-side Skeleton Carousel
 function SkeletonCarousel() {
@@ -20,7 +20,7 @@ function SkeletonCarousel() {
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
-              <ProjectCardSkeleton />
+              <CardSkeleton />
             </div>
           </CarouselItem>
         ))}
@@ -32,10 +32,10 @@ function SkeletonCarousel() {
 }
 
 // Main Server Component
-export function FeaturedProjects() {
+export function FeaturedAchievements() {
   return (
     <Suspense fallback={<SkeletonCarousel />}>
-      <FeaturedProjectCarousel />
+      <AchievementCarousel />
     </Suspense>
   )
 }

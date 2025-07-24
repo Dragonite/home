@@ -1,3 +1,4 @@
+import { FeaturedAchievements } from "@/components/achievements/achievements/featured-achievements";
 import CertificationAccordion from "@/components/achievements/certifications/certification-accordion";
 import { Metadata } from "next";
 
@@ -16,6 +17,9 @@ export default async function Page() {
         <div className="text-center text-muted-foreground mt-4">
           Some achievements and certifications I&apos;ve earned throughout my career.
         </div>
+      </div>
+      <div className="px-16 sm:px-24 lg:px-32 mt-24 w-full transition-all duration-200 ease-out">
+        <FeaturedAchievements />
       </div>
       <div className="w-full flex items-center justify-center flex-col">
         <CertificationAccordion />
