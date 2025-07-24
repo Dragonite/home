@@ -17,6 +17,7 @@ import ApiError from "../../api-error"
 import { fetchProjects } from "@/lib/api/projects"
 import { Project } from "@/lib/schemas"
 import ProjectCard from "./project-card"
+import Link from "next/link"
 
 
 // Client Component with TanStack Query
@@ -73,7 +74,13 @@ export function FeaturedProjectCarousel() {
       <CarouselContent>
         {projects?.data.projects.map((project: Project) => 
             <CarouselItem key={`${project.id}__carousel`} className="md:basis-1/2 lg:basis-1/3 pt-2">
+              {project.link ? (
+                <Link href={project.link}>
+                  <ProjectCard key={project.id} project={project}/>
+                </Link>
+              ) : (
                 <ProjectCard key={project.id} project={project}/>
+              )}
             </CarouselItem>
         )}
       </CarouselContent>
