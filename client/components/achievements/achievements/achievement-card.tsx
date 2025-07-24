@@ -23,7 +23,7 @@ function AchievementCard({ achievement }: { achievement: Achievement }) {
           </div>
           
           {/* Description */}
-          <p className="text-gray-200 text-sm mb-4 leading-relaxed">
+          <p className="text-gray-200 text-sm leading-relaxed">
             {achievement.description}
           </p>
         </div>
