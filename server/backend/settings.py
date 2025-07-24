@@ -24,7 +24,8 @@ AWS_STORAGE_BUCKET_NAME = config('R2_BUCKET_NAME')
 AWS_S3_ENDPOINT_URL = f"https://{config('R2_ACCOUNT_ID')}.r2.cloudflarestorage.com"
 AWS_QUERYSTRING_AUTH = False  # Don't use signed URLs
 AWS_S3_CUSTOM_DOMAIN = config('R2_CUSTOM_DOMAIN')
-AWS_S3_REGION_NAME = 'auto'
+AWS_S3_REGION_NAME = None
+AWS_SESSION_TOKEN = None
 AWS_DEFAULT_ACL = None
 AWS_S3_USE_SSL = True
 
