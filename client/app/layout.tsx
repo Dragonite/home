@@ -21,6 +21,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Haolin Wu - Software & Data Engineer',
   description: 'Portfolio of Haolin Wu, Software & Data Engineer specializing in full-stack development and data solutions.',
+  keywords: ['Haolin Wu', 'Software Engineer', 'Data Engineer', 'Portfolio', 'Full-Stack Development', 'Data Solutions', 'Machine Learning', 'Prompt Engineering', 'Haolin', 'Wu'],
+  authors: [{ name: 'Haolin Wu', url: 'https://haolin.dev' }],
+  creator: 'Haolin Wu',
+  publisher: 'Haolin Wu',
 };
 
 export default async function RootLayout({
@@ -38,7 +42,7 @@ export default async function RootLayout({
           <ConfigProvider config={globalConfig}>
             <SheetProvider>
               <NavigationBar />
-              <main className="pt-32 min-h-screen flex flex-col justify-center">
+              <main className="pt-24 sm:pt-32 min-h-screen flex flex-col justify-center">
                 {children}
               </main>
               <Toaster />
