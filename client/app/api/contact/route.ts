@@ -7,8 +7,6 @@ export async function POST(request: NextRequest) {
 
     const validationResult = ContactFormSchema.safeParse(body)
 
-    console.log(validationResult)
-
     if (!validationResult.success) {
       return NextResponse.json(
         { 
