@@ -38,7 +38,7 @@ export default async function RootLayout({
           <ConfigProvider config={globalConfig}>
             <SheetProvider>
               <NavigationBar />
-              <main className="pt-32">
+              <main className="pt-32 min-h-screen flex flex-col justify-center">
                 {children}
               </main>
               <Toaster />

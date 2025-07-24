@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import ChevronRightIcon from "@/components/home-page/chevron-right";
-import { FeaturedProjects } from "@/components/projects/featured-projects/featured-projects";
 import CTAActionList from "@/components/home-page/cta-action-list";
 
 export const metadata: Metadata = {
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   return (
-    <div className="w-full flex items-center justify-center flex-col">
+    <div className="w-full flex items-center justify-center flex-col pb-32 h-full">
       <div className="text-center w-full text-primary leading-tighter max-w-2xl text-6xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter">
         Haolin Wu
       </div>
@@ -23,9 +22,6 @@ export default async function Home() {
         </div>
       </div>
       <CTAActionList />
-      <div className="px-16 sm:px-24 lg:px-32 mt-24 w-full transition-all duration-200 ease-out">
-        <FeaturedProjects />
-      </div>
     </div>
   );
 }
