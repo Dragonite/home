@@ -5,6 +5,8 @@ import NavigationBar from "@/components/navigation-bar";
 import { Providers } from "@/components/providers";
 import { getGlobalConfig } from "@/lib/api/config";
 import { ConfigProvider } from "@/contexts/global-config";
+import { SheetProvider } from "@/contexts/sheet";
+import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,10 +36,13 @@ export default async function RootLayout({
       >
         <Providers>
           <ConfigProvider config={globalConfig}>
-            <NavigationBar />
-            <main className="pt-32">
-              {children}
-            </main>
+            <SheetProvider>
+              <NavigationBar />
+              <main className="pt-32">
+                {children}
+              </main>
+              <Toaster />
+            </SheetProvider>
           </ConfigProvider>
         </Providers>
       </body>

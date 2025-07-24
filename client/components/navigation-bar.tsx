@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import ContactContent from "@/components/contact/content";
+import { useSheet } from "@/contexts/sheet";
 
 const navigationItems = [
   { name: "Projects", link: "/projects" },
@@ -22,9 +23,10 @@ const navigationItems = [
 
 const NavigationBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { isOpen, openSheet, closeSheet } = useSheet()
 
   return (
-    <Sheet>
+    <Sheet open={isOpen} onOpenChange={closeSheet}>
       {/* Desktop Navigation */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 hidden sm:block">
         <div className="flex items-center space-x-1 bg-white/10 backdrop-blur-xl border border-white/10 rounded-full px-2 py-2 shadow-2xl shadow-black/25">
@@ -50,15 +52,14 @@ const NavigationBar = () => {
               </Link>
             </Button>
           ))}
-          <SheetTrigger asChild>
-            <Button
-              key="Contact"
-              variant="secondary"
-              className="hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
-            >
-              Contact
-            </Button>
-          </SheetTrigger>
+          <Button
+            key="Contact"
+            variant="secondary"
+            onClick={openSheet}
+            className="hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
+          >
+            Contact
+          </Button>
         </div>
       </nav>
 
@@ -100,20 +101,22 @@ const NavigationBar = () => {
                   </Link>
                 </Button>
               ))}
-              <SheetTrigger asChild>
-                <Button
-                  key="Contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  variant="secondary"
-                  className="hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
-                >
-                  Contact
-                </Button>
-              </SheetTrigger>
+              <Button
+                key="Contact"
+                onClick={() => {
+                  setIsMobileMenuOpen(false)
+                  openSheet()
+                }}
+                variant="secondary"
+                className="hover:text-white hover:bg-white/10 rounded-full px-4 py-2 transition-all duration-200 border-0"
+              >
+                Contact
+              </Button>
             </div>
           </div>
         )}
       </nav>
+      
       <SheetContent>
         <SheetHeader className="h-full">
           <SheetTitle>Contact me</SheetTitle>

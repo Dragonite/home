@@ -1,9 +1,11 @@
 "use client"
- 
+
+import { toast } from "sonner"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+import { useSheet } from "@/contexts/sheet"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
@@ -15,6 +17,7 @@ const formSchema = z.object({
 })
  
 function ContactForm() {
+  const { closeSheet } = useSheet();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -28,7 +31,9 @@ function ContactForm() {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+
+    // closeSheet();
+    toast.success(JSON.stringify(values, null, 2))
   }
 
   return (
