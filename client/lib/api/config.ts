@@ -1,7 +1,8 @@
 import { GlobalConfigApiResponse, ConfigApiResponseSchema, GlobalConfig } from "../schemas"
+import { getApiUrl } from "../utils"
 
 async function fetchGlobalConfig(): Promise<GlobalConfigApiResponse> {
-  const response = await fetch('http://127.0.0.1:8000/api/config/')
+  const response = await fetch(`${getApiUrl()}/api/config/`)
   
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)

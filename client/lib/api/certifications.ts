@@ -1,7 +1,8 @@
 import { CertificationApiResponse, CertificationApiResponseSchema } from "../schemas/certifications"
+import { getApiUrl } from "../utils"
 
 export async function fetchCertifications(): Promise<CertificationApiResponse> {
-  const response = await fetch('http://127.0.0.1:8000/api/certifications/')
+  const response = await fetch(`${getApiUrl()}/api/certifications/`)
   
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)

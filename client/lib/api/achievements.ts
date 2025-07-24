@@ -1,7 +1,8 @@
 import { AchievementApiResponse, AchievementApiResponseSchema } from "../schemas/achievements"
+import { getApiUrl } from "../utils"
 
 export async function fetchAchievements(): Promise<AchievementApiResponse> {
-  const response = await fetch('http://127.0.0.1:8000/api/achievements/')
+  const response = await fetch(`${getApiUrl()}/api/achievements/`)
   
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)

@@ -1,10 +1,11 @@
 import { ProjectsApiResponse, ProjectsApiResponseSchema } from "../schemas"
+import { getApiUrl } from "../utils";
 
 type ProjectFilterType = boolean | 'all';
 
 export async function fetchProjects(featured: ProjectFilterType): Promise<ProjectsApiResponse> {
   const queryParam = featured === true ? '?featured=true' : '';
-  const response = await fetch(`http://127.0.0.1:8000/api/projects${queryParam}`);
+  const response = await fetch(`${getApiUrl()}/api/projects${queryParam}`);
   
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)
