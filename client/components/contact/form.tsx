@@ -9,17 +9,34 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
- 
-const formSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Please enter a valid email address"),
-  message: z.string().min(1, "Message is required").max(1000, "Message must be less than 500 characters"),
-})
+import { useMutation } from "@tanstack/react-query"
+import { submitContactForm } from "@/lib/api/contact"
+import { ContactFormData, ContactFormSchema } from "@/lib/schemas/contact-form"
  
 function ContactForm() {
   const { closeSheet } = useSheet();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const contactMutation = useMutation({
+    mutationFn: submitContactForm,
+    onSuccess: () => {
+      // Only executes on successful API response
+      closeSheet()
+      toast.success("Message sent successfully", {
+        description: "I'll get back to you as soon as possible."
+      })
+      
+      // Reset form
+      form.reset()
+    },
+    onError: (error) => {
+      toast.error("Something went wrong", {
+        description: "Please try again later."
+      })
+      console.error('Contact submission error:', error)
+    },
+  })
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -28,12 +45,8 @@ function ContactForm() {
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-
-    // closeSheet();
-    toast.success(JSON.stringify(values, null, 2))
+  function onSubmit(values: ContactFormData) {
+    contactMutation.mutate(values)
   }
 
   return (
