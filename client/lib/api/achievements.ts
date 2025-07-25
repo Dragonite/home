@@ -2,7 +2,9 @@ import { AchievementApiResponse, AchievementApiResponseSchema } from "../schemas
 import { getApiUrl } from "../utils"
 
 export async function fetchAchievements(): Promise<AchievementApiResponse> {
-  const response = await fetch(`${getApiUrl()}/api/achievements/`)
+  const response = await fetch(`${getApiUrl()}/api/achievements/`, {
+    next: { revalidate: 600  }
+  })
   
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)

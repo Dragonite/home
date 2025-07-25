@@ -13,7 +13,9 @@ const getQueryParam = (featured: ProjectFilterType): string => {
 };
 
 export async function fetchProjects(featured: ProjectFilterType): Promise<ProjectsApiResponse> {
-  const response = await fetch(`${getApiUrl()}/api/projects${getQueryParam(featured)}`);
+  const response = await fetch(`${getApiUrl()}/api/projects${getQueryParam(featured)}`, {
+    next: { revalidate: 600 },
+  });
   
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)
