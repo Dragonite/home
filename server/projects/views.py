@@ -15,11 +15,11 @@ class ProjectListView(APIView):
     def get(self, request):
         featured = request.GET.get('featured')
         if featured == 'true':
-            projects = Project.objects.filter(featured=True, is_active=True)
+            projects = Project.objects.filter(featured=True, is_active=True).order_by('priority')
         elif featured == 'false':
-            projects = Project.objects.filter(featured=False, is_active=True)
+            projects = Project.objects.filter(featured=False, is_active=True).order_by('priority')
         else:
-            projects = Project.objects.filter(is_active=True)
+            projects = Project.objects.filter(is_active=True).order_by('priority')
         serializer = ProjectSerializer(projects, many=True)
         return generate_response(serializer.data, "projects")
 
