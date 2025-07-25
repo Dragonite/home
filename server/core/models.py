@@ -24,6 +24,7 @@ class GlobalConfiguration(models.Model):
     github_url = models.URLField(blank=True, null=True, verbose_name="GitHub URL")
     linkedin_url = models.URLField(blank=True, null=True, verbose_name="LinkedIn URL")
     email = models.EmailField(blank=True, null=True)
+    portfolio_github_url = models.URLField(blank=True, null=True, verbose_name="Portfolio GitHub URL")
 
     def __str__(self):
         return 'Configuration'

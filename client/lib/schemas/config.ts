@@ -6,6 +6,7 @@ export const ConfigSchema = z.object({
   github_url: z.string(),
   linkedin_url: z.string(),
   email: z.string(),
+  portfolio_github_url: z.string(),
 });
 
 export const ConfigDataSchema = z.object({

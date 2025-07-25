@@ -24,6 +24,7 @@ export async function getGlobalConfig(): Promise<GlobalConfig> {
         github_url: 'https://www.github.com/Dragonite',
         linkedin_url: 'https://www.linkedin.com/in/haolin-wu-222188160/',
         email: 'haolin@haolin.dev',
+        portfolio_github_url: 'https://www.github.com/Dragonite/home',
     }
   }
 }

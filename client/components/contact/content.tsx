@@ -30,7 +30,7 @@ const ContactContent = () => {
           className="py-0 pl-1 pr-0"
           variant="link"
         >
-          <Link href="https://www.github.com">GitHub</Link>
+          <Link href={config && config.portfolio_github_url ? config.portfolio_github_url : 'https://www.github.com/Dragonite/home'}>GitHub</Link>
         </Button>
         <span>.</span>
       </div>
