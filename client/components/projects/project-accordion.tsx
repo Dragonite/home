@@ -37,7 +37,7 @@ const ProjectAccordion = async () => {
                   </Badge>
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 text-balance">
+              <AccordionContent className="flex flex-col gap-4">
                 <div className="bg-cover bg-center bg-no-repeat w-full h-36 rounded-lg shadow-md brightness-80" style={{ backgroundImage: `url('${image}')` }} />
                 <p>
                   {description}
