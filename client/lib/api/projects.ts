@@ -3,9 +3,17 @@ import { getApiUrl } from "../utils";
 
 type ProjectFilterType = boolean | 'all';
 
+const getQueryParam = (featured: ProjectFilterType): string => {
+  if (featured === true) {
+    return '?featured=true';
+  } else if (featured === false) {
+    return '?featured=false';
+  }
+  return '';
+};
+
 export async function fetchProjects(featured: ProjectFilterType): Promise<ProjectsApiResponse> {
-  const queryParam = featured === true ? '?featured=true' : '';
-  const response = await fetch(`${getApiUrl()}/api/projects${queryParam}`);
+  const response = await fetch(`${getApiUrl()}/api/projects${getQueryParam(featured)}`);
   
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`)
