@@ -12,9 +12,12 @@ class Category(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
+    role = models.CharField(max_length=100, blank=True, null=True)
+    short_description = models.CharField(max_length=255, blank=True, null=True)
+    image = models.ImageField(upload_to='images/blog/', blank=True, null=True)
     content = HTMLField()
     categories = models.ManyToManyField(Category, related_name='posts', blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField()
     is_active = models.BooleanField(default=True, help_text="Show this post on the blog")
 
     def __str__(self):
