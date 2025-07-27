@@ -12,6 +12,7 @@ import { Textarea } from "../ui/textarea"
 import { useMutation } from "@tanstack/react-query"
 import { submitContactForm } from "@/lib/api/contact"
 import { ContactFormData, ContactFormSchema } from "@/lib/schemas/contact-form"
+import { Loader2Icon } from "lucide-react"
  
 function ContactForm() {
   const { closeSheet } = useSheet();
@@ -91,7 +92,14 @@ function ContactForm() {
             </FormItem>
           )}
         />
-        <Button variant="secondary" type="submit">Submit</Button>
+        {contactMutation.isPending ? (
+          <Button size="sm" disabled>
+            <Loader2Icon className="animate-spin" />
+            Please wait
+          </Button>
+        ) : (
+          <Button variant="secondary" type="submit">Submit</Button>
+        )}
       </form>
     </Form>
   )
