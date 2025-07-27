@@ -1,29 +1,52 @@
 import { BlogPost } from "@/lib/schemas/blog-post";
 import Link from "next/link";
+import Image from "next/image";
+import { Separator } from "../ui/separator";
+import { Badge } from "../ui/badge";
 
 interface BlogPostPreviewProps {
   blogPost: BlogPost;
 }
 
 const BlogPostPreview = ({ blogPost }: BlogPostPreviewProps) => {
-  const { id, title, image, short_description } = blogPost;
+  const { id, title, image, short_description, created_at, categories } = blogPost;
+  const formattedDate = new Date(Date.parse(created_at)).toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
-    <div className="px-8 sm:px-16 lg:px-24 w-full mb-8 max-w-6xl">
-      <div className="text-center">
-        <Link href={`/blogs/${id}`}>
-          <article className="w-full overflow-hidden rounded-xl h-72 sm:h-72 md:h-64 shadow-xl transition transform motion-reduce:transition-none motion-reduce:hover:transform-none relative group">
-            {/* Full Width Background Image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-              style={{ backgroundImage: `url(${image})` }}
+    <Link href={`/blogs/${id}`} className="text-center">
+      <article className="w-full rounded-xl shadow-xl">
+        <div className="h-full w-full flex flex-col sm:flex-row gap-6">
+          <div className="relative h-36 sm:min-h-36 aspect-[16/9]"> {/* Adjust aspect ratio as needed */}
+            <Image
+              src={image!}
+              alt={title}
+              fill
+              className="object-cover rounded-xl" // Maintains your styling
             />
-            
-            {/* Gradient Overlay - fades to white by halfway point */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-bg/80 to-bg" />
-          </article>
-        </Link>
-      </div>
-    </div>
+          </div>
+          <div className="flex flex-col h-auto text-white text-left">
+            <div className="text-sm text-muted-foreground mb-1">{formattedDate}</div>
+            <h2 className="text-xl font-bold mb-2">{title}</h2>
+            <p className="text-sm">{short_description}</p>
+            <div className="flex gap-2 mt-4">
+              {categories.map(category => (
+                <Badge 
+                  key={category.id} 
+                  variant="default"
+                  className="text-xs"
+                >
+                  {category.name}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 };
 
