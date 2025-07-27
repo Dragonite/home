@@ -18,7 +18,7 @@ export default async function Page() {
           Some achievements and certifications I&apos;ve earned throughout my career.
         </div>
       </div>
-      <div className="px-16 sm:px-24 lg:px-32 mt-24 w-full transition-all duration-200 ease-out">
+      <div className="px-16 sm:px-24 lg:px-32 mt-16 w-full transition-all duration-200 ease-out">
         <FeaturedAchievements />
       </div>
       <div className="w-full flex items-center justify-center flex-col">
