@@ -1,7 +1,6 @@
 import { BlogPost } from "@/lib/schemas/blog-post";
 import Link from "next/link";
 import Image from "next/image";
-import { Separator } from "../ui/separator";
 import { Badge } from "../ui/badge";
 
 interface BlogPostPreviewProps {
@@ -9,7 +8,7 @@ interface BlogPostPreviewProps {
 }
 
 const BlogPostPreview = ({ blogPost }: BlogPostPreviewProps) => {
-  const { id, title, image, short_description, created_at, categories } = blogPost;
+  const { slug, title, image, short_description, created_at, categories } = blogPost;
   const formattedDate = new Date(Date.parse(created_at)).toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -17,7 +16,7 @@ const BlogPostPreview = ({ blogPost }: BlogPostPreviewProps) => {
     day: "numeric",
   });
   return (
-    <Link href={`/blogs/${id}`} className="text-center">
+    <Link href={`/blog/${slug}`} className="text-center">
       <article className="w-full rounded-xl shadow-xl">
         <div className="h-full w-full flex flex-col sm:flex-row gap-6">
           <div className="relative h-36 sm:min-h-36 aspect-[16/9]"> {/* Adjust aspect ratio as needed */}

@@ -7,7 +7,7 @@ export const CategorySchema = z.object({
 })
 
 export const BlogPostSchema = z.object({
-  id: z.number(),
+  slug: z.string(),
   title: z.string(),
   role: z.string().nullable(),
   short_description: z.string().nullable(),
