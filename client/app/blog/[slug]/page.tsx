@@ -4,11 +4,38 @@ import { fetchBlogPost } from '@/lib/api/blog';
 import { notFound } from 'next/navigation';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
+import { Metadata } from "next";
 
 interface BlogPostProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
+  const { slug } = await params;
+  const blogResponse = await fetchBlogPost(slug);
+  
+  if (!blogResponse) {
+    return {
+      title: 'Blog Post Not Found',
+      description: 'The requested blog post could not be found.',
+    };
+  }
+  
+  const blogPost = blogResponse.data.post;
+  const { title, short_description } = blogPost;
+  
+  return {
+    title: `${title} | Haolin Wu - Blog`,
+    description: short_description,
+    // Optional: Add more metadata
+    openGraph: {
+      title: title,
+      description: short_description!,
+      images: blogPost.image ? [blogPost.image] : [],
+    },
+  };
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
