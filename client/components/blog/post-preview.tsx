@@ -24,7 +24,7 @@ const BlogPostPreview = ({ blogPost }: BlogPostPreviewProps) => {
               src={image!}
               alt={title}
               fill
-              className="object-cover rounded-xl" // Maintains your styling
+              className="object-cover rounded-xl opacity-80" // Maintains your styling
             />
           </div>
           <div className="flex flex-col h-auto text-white text-left">
