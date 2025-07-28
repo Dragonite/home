@@ -8,6 +8,7 @@ admin.site.register(Category)
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ['title', 'is_active', 'get_categories', 'created_at']
+    prepopulated_fields = {'slug': ('title',)}
     filter_horizontal = ['categories']
     
     def get_categories(self, obj):

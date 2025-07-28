@@ -12,7 +12,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BlogPost
-        fields = ['id', 'title', 'role', 'short_description', 'image', 'content', 'read_duration', 'categories', 'created_at']
+        fields = ['slug', 'title', 'role', 'short_description', 'image', 'content', 'read_duration', 'categories', 'created_at']
 
     def get_read_duration(self, obj):
         word_count = len(obj.content.split())
