@@ -38,6 +38,17 @@ export async function generateMetadata({ params }: BlogPostProps): Promise<Metad
   };
 }
 
+const generateTailwindRichTextStyles = (): string => {
+  const base = "flex flex-col";
+  const paragraphs = "[&_p]:mb-4";
+  const anchors = "[&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-blue-800";
+  const headings = "[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:my-4 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:my-4 [&_h4]:text-lg [&_h4]:font-semibold [&_h4]:my-4 [&_h5]:text-lg [&_h5]:font-semibold [&_h5]:my-4 [&_h6]:text-lg [&_h6]:font-semibold [&_h6]:my-4";
+  const images = "[&_img]:mx-auto [&_img]:rounded-lg";
+  const lists = "[&_ul]:list-disc [&_ul]:mb-4 [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:mb-4 [&_ol]:pl-6 [&_li]:mb-2";
+
+  return `${base} ${paragraphs} ${anchors} ${headings} ${images} ${lists}`;
+}
+
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug } = await params;
   const blogResponse = await fetchBlogPost(slug);
@@ -72,8 +83,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
               />
             </div>
           )}
-          <div className="flex flex-col [&_p]:mb-4 [&_a]:text-blue-600" dangerouslySetInnerHTML={{__html: xss(content)}} />
-          <Separator />
+          <div className={generateTailwindRichTextStyles()} dangerouslySetInnerHTML={{__html: xss(content)}} />
+          <Separator className="mt-8" />
           <div className="flex w-full gap-2 mt-4">
             {categories.map(category => (
               <Badge 
